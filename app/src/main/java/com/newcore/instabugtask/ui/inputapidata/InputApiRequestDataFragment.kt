@@ -2,6 +2,7 @@ package com.newcore.instabugtask.ui.inputapidata
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.tabs.TabLayoutMediator
 import com.newcore.instabugtask.databinding.FragmentInputApiRequestDataBinding
@@ -33,7 +34,13 @@ class InputApiRequestDataFragment : BaseFragment<FragmentInputApiRequestDataBind
     }
 
     private fun initButton() {
-
+        binding.btnSendRequest.setOnClickListener {
+            vm.callUrl()
+        }
+        binding.radioGroup.check(binding.rbGet.id)
+        binding.rbGet.setOnClickListener { vm.isGetType = true }
+        binding.rbPost.setOnClickListener { vm.isGetType = false }
+        binding.etUrl.doOnTextChanged { text, _, _, _ -> vm.url = text.toString() }
     }
 
     private fun initView() = binding.apply {

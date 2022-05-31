@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.newcore.instabugtask.databinding.ItemKeyValueRowBinding
-import com.newcore.instabugtask.ui.inputapidata.models.KeyValueRequest
+import com.newcore.instabugtask.data.models.KeyValueRequest
 
 
 class KeyValuesAdapter(val delete: (KeyValueRequest) -> Unit) :

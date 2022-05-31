@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.newcore.instabugtask.databinding.FragmentKeyValueRowsBinding
 import com.newcore.instabugtask.ui.BaseFragment
 import com.newcore.instabugtask.ui.inputapidata.InputApiRequestDataViewModel
-import com.newcore.instabugtask.ui.inputapidata.models.KeyValueRequest
+import com.newcore.instabugtask.data.models.KeyValueRequest
 
 class HeaderFragment : BaseFragment<FragmentKeyValueRowsBinding>
     (FragmentKeyValueRowsBinding::inflate) {

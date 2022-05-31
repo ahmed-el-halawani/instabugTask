@@ -1,4 +1,4 @@
-package com.newcore.instabugtask.ui.inputapidata.models
+package com.newcore.instabugtask.data.models
 
 import java.util.*
 
