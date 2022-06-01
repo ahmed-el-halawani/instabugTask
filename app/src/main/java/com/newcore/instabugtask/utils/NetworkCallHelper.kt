@@ -4,10 +4,8 @@ import android.net.Uri
 import android.os.AsyncTask
 import com.newcore.instabugtask.data.models.RequestUrl
 import com.newcore.instabugtask.data.models.ResponseUrl
-import java.io.BufferedInputStream
-import java.io.ByteArrayOutputStream
-import java.io.IOException
-import java.io.InputStream
+import com.newcore.instabugtask.utils.Utils.formatResponseString
+import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -33,7 +31,11 @@ object NetworkCallHelper {
         }
 
         override fun doInBackground(vararg requestUrl: RequestUrl): ResponseUrl {
-            val responseString = ResponseUrl(requestUrl[0])
+            val responseString = ResponseUrl(
+                formatResponseString(requestUrl[0]),
+                if (requestUrl[0].isGetType) "GET" else "POST",
+                requestUrl[0].url
+            )
             try {
 
                 val builder = Uri.Builder().path(requestUrl[0].url)
@@ -51,6 +53,16 @@ object NetworkCallHelper {
                 urlConnection.setRequestProperty("Accept", "application/json")
                 requestUrl[0].header.forEach {
                     urlConnection.setRequestProperty(it.key, it.value)
+                }
+
+                if (!requestUrl[0].isGetType) {
+                    urlConnection.doOutput = true
+                    val os: OutputStream = urlConnection.outputStream
+                    val osw = OutputStreamWriter(os, "UTF-8")
+                    osw.write(requestUrl[0].body)
+                    osw.flush()
+                    osw.close()
+                    os.close()
                 }
 
                 responseString.statusCode = urlConnection.responseCode.toString()

@@ -9,5 +9,25 @@
         android:name="com.newcore.instabugtask.ui.inputapidata.InputApiRequestDataFragment"
         android:label="InputApiRequestDataFragment"
         tools:layout="@layout/fragment_input_api_request_data"
-        />
+        >
+        <action
+            android:id="@+id/action_inputApiRequestDataFragment_to_responseDataFragment"
+            app:destination="@id/responseDataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/responseDataFragment"
+        android:name="com.newcore.instabugtask.ui.responsedata.ResponseDataFragment"
+        android:label="ResponseDataFragment" >
+        <argument
+            android:name="response"
+            app:argType="com.newcore.instabugtask.data.models.ResponseUrl" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyDataFragment"
+        android:name="com.newcore.instabugtask.ui.history.HistoryDataFragment"
+        android:label="HistoryDataFragment" >
+        <action
+            android:id="@+id/action_historyDataFragment_to_responseDataFragment"
+            app:destination="@id/responseDataFragment" />
+    </fragment>
 </navigation>
